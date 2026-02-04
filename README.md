@@ -1,108 +1,56 @@
-# Exercice technique – Fullstack JS (React + NodeJS)
+## [front/react] Github user search
 
-## Objectif
+## Instructions
 
-Réaliser une **mini application de gestion de tâches** en React (frontend) et NodeJS (backend).
+Create a search input text where users can type in and get results straight away, without ENTER keypress or submit button required.
+Results will list Github users like the mock below, and must be responsive.
 
-L’objectif de cet exercice n’est pas de construire une application complète ou parfaite, mais d’évaluer :
-- la clarté du raisonnement
-- la qualité et la lisibilité du code
-- la capacité à faire des choix techniques pertinents
+<img width="1000" alt="Capture d’écran 2022-07-29 à 09 29 15" src="https://user-images.githubusercontent.com/42266363/181709007-eabaf8ff-e298-44db-9213-bb515c2e0757.png">
 
----
+### The subject
 
-## Cadre
+1. Query against Github Api: GET https://api.github.com/search/users?q={USER}.
+2. Setup a new app using [vite](https://vite.dev/)
+3. Try to not add any dependency library. Only testing libraries are accepted.
+4. Don't forget to check against modern ways to make HTTP requests on frontend side.
+5. Manage edge cases:
+    - No results
+    - Github api rate limit
+    - User type in quickly and going back and forth on his search
+6. Add a checkbox on each card item
+7. Add a checkbox for select all cards with the number of selected items
+8. Add two actions depending selected items
+    - Duplicate items
+    - Delete items
 
-- **Temps recommandé** : 2 à 3 heures
-  (merci de ne pas dépasser ce temps)
-- **Format** : exercice à réaliser chez vous
-- **Stack imposée** :
-  - Frontend : **React**
-  - Backend : **NodeJS**
-- Le reste est libre (frameworks, outils, organisation)
+These actions are only front-end and will be reset when the search change
 
----
+### Bonus
 
-## Fonctionnalités attendues
+Add an edit mode
 
-### Backend
+- When edit mode is on:
 
-Créer une API REST permettant de :
+    - display checkboxes on cards
+    - display the select all checkbox
+    - display duplicate and delete actions
 
-1. **Lister les tâches**
-   - `GET /tasks`
+- When edit mode is off:
+    - hide checkboxes
+    - hide duplicate and delete actions
 
-2. **Créer une tâche**
-   - `POST /tasks`
-   - champ requis : `title`
+### Guidelines
 
-3. **Mettre à jour le statut d’une tâche**
-   - `PATCH /tasks/:id`
-   - statuts possibles : `todo`, `done`
+- Use React.js with TypeScript to render the view
+- Push your code to a Github repository
+- Document what you've done
 
-Les données peuvent être stockées **en mémoire** (aucune base de données requise).
+### Evaluation
 
----
-
-### Frontend
-
-Créer une interface permettant de :
-
-- afficher la liste des tâches
-- ajouter une tâche
-- changer le statut d’une tâche
-- afficher un état de chargement lors des appels réseau
-- afficher un message d’erreur en cas d’échec
-
-Aucun design particulier n’est attendu.
-
----
-
-## Contraintes & attentes
-
-- Pas d’authentification
-- Pas de base de données
-- Le code doit être **lisible, structuré et maintenable**
-- Les choix techniques doivent être **assumés**
-- Vous pouvez faire des **hypothèses**, à condition de les documenter
-
-> Il vaut mieux faire peu mais bien que vouloir tout faire.
-
----
-
-## Livrables attendus
-
-1. Le code source (dans ce repository sur votre branche)
-2. Un fichier `README.md` contenant :
-   - les instructions pour lancer le projet
-   - les principaux choix techniques
-   - les hypothèses prises
-   - ce que vous amélioreriez dans un contexte de production
-
----
-
-## Indications
-
-- Le code sera relu par d’autres développeurs
-- Pensez à la gestion des erreurs
-- Pensez à la maintenabilité
-- Pensez au contrat entre le frontend et le backend
-- Des `TODO` clairs sont préférables à du code bâclé
-
----
-
-## Questions ouvertes (facultatives)
-
-À traiter uniquement si vous avez le temps :
-
-- Quels tests écririez-vous en priorité ?
-- Comment feriez-vous évoluer cette application à plus grande échelle ?
-
----
-
-## Important
-
-> Privilégiez une solution **simple, propre et expliquée**
-> plutôt qu’une solution incomplète ou sur-complexe.
-
-Bonne chance 🙂
+- Quality of the code
+- Scalability of the algorithm
+- Usage of good practices and modern javascript
+- Respect of the mock
+- Types
+- Responsive
+- Tests
