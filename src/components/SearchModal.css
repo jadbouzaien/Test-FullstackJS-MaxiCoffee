@@ -1,0 +1,43 @@
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  bottom: 0px;
+  transform: translateX(-50%) translateY(60px);
+  width: min(800px, 100vw);
+  background: #ffffff;
+  border-radius: 24px 24px 0 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 80px);
+  animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.20s;
+  overflow: hidden;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 40;
+  animation: overlayIn 0.25s ease both;
+}
