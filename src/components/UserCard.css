@@ -1,4 +1,5 @@
 .user-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,6 +11,51 @@
     width: 100px;
     min-width: 100px;
 }
+
+.user-card__checkbox-wrapper {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.user-card__checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.user-card__checkbox-custom {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.user-card__checkbox:checked + .user-card__checkbox-custom {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.user-card__checkbox:checked + .user-card__checkbox-custom::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 6px;
+  height: 9px;
+  border: 2px solid #000;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
 
 .user-card__avatar {
     height: 48px;
