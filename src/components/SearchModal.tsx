@@ -121,6 +121,7 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                         <button
                             className={`modal__edit-btn ${isEditMode ? 'modal__edit-btn--active' : ''}`}
                             onClick={() => setIsEditMode(m => !m)}
+                            aria-label={isEditMode ? 'Exit edit mode' : 'Enter edit mode'}
                             title={isEditMode ? 'Exit edit mode' : 'Edit'}
                         >
                             {isEditMode ? (
