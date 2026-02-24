@@ -93,8 +93,6 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
     }
     if (!isOpen) return null
 
-    const allLoaded = cards.length >= state.totalCount && state.totalCount > 0
-
     return (
         <>
             <div className="modal-overlay" onClick={onClose} aria-hidden="true" />
@@ -223,12 +221,6 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
 
                     {state.isLoading && (
                         <div className="modal__spinner" aria-label="Loading" />
-                    )}
-
-                    {allLoaded && (
-                        <div className="modal__end">
-              All {state.totalCount.toLocaleString()} users loaded
-                        </div>
                     )}
                 </div>
             </div>
