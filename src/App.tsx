@@ -20,7 +20,7 @@ function App() {
                 <span className="app__logo-text">GitSearch</span>
             </div>
             <button
-                className="app__search-button"
+                className="app__search-btn"
                 onClick={() => setIsModalOpen(true)}
             >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

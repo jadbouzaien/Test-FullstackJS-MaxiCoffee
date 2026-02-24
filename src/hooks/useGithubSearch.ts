@@ -87,8 +87,8 @@ export function useGitHubSearch(): UseGitHubSearchReturn {
                 ...prev,
                 query,
                 isLoading: hasQuery,
-                results: hasQuery ? prev.results : [],
-                totalCount: hasQuery ? prev.totalCount : 0,
+                results: [],
+                totalCount: 0,
                 error: null,
             }))
             debouncedSearch(query)
