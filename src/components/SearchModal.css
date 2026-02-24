@@ -1,3 +1,15 @@
+/* ========================================
+   Entrance Animations
+======================================== */
+
+/**
+ * Modal slide-up animation.
+ * We combine translateX(-50%) for centering
+ * with translateY for vertical motion.
+ *
+ * Opacity fade + spring-like cubic-bezier
+ * gives it a playful, slightly elastic feel.
+ */
 @keyframes modalSlideUp {
   from {
     opacity: 0;
@@ -11,22 +23,41 @@
 
 .modal {
   position: fixed;
+
+  /* Positioned from top rather than centered vertically
+     to mimic a bottom-sheet style modal */
   top: 64px;
   left: 50%;
   bottom: 0px;
+
+  /* Horizontal centering */
   transform: translateX(-50%) translateY(60px);
+
   width: min(800px, 100vw);
   background: #ffffff;
+
+  /* Rounded top corners only → sheet-style modal */
   border-radius: 24px 24px 0 0;
+
   z-index: 50;
+
   display: flex;
   flex-direction: column;
+
+  /* Prevent modal from exceeding viewport height */
   max-height: calc(100dvh - 80px);
+
+  /* Entrance animation */
   animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   animation-delay: 0.20s;
+
   overflow: hidden;
 }
 
+/**
+ * Overlay fade-in animation.
+ * Slightly faster than modal for layered feel.
+ */
 @keyframes overlayIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -35,21 +66,32 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
+
+  /* Semi-transparent dark background */
   background: rgba(0, 0, 0, 0.5);
+
+  /* Frosted glass effect */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+
   z-index: 40;
+
   animation: overlayIn 0.25s ease both;
 }
+
+/* ========================================
+   Search Row
+======================================== */
 
 .modal__search-row {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 14px 20px;
+
+  /* Subtle separator */
   border-bottom: 1px solid rgba(0, 0, 0, 0.076);
 }
-
 
 .modal__search-icon {
   color: rgba(0, 0, 0, 0.547);
@@ -57,15 +99,22 @@
   align-items: center;
 }
 
+/**
+ * Input is visually minimal.
+ * Relies on parent container styling.
+ */
 .modal__search-input {
   flex: 1;
   background: transparent;
   border: none;
   outline: none;
+
   color: #938e8e;
+
   font-family: 'Syne', sans-serif;
   font-size: 16px;
   font-weight: 500;
+
   caret-color: var(--accent);
 }
 
@@ -74,38 +123,56 @@
   font-weight: 400;
 }
 
+/* ========================================
+   Edit Button
+======================================== */
+
 .modal__edit-btn {
   background: rgba(0, 0, 0, 0.01);
   border: 1px solid rgba(0, 0, 0, 0.05);
+
   color: rgba(0, 0, 0, 0.6);
+
   width: 32px;
   height: 32px;
+
   border-radius: 8px;
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   transition: all 0.2s ease;
+
   flex-shrink: 0;
 }
 
+/* Accent feedback on hover */
 .modal__edit-btn:hover {
   background: rgba(110, 231, 183, 0.08);
   border-color: rgba(110, 231, 183, 0.25);
   color: var(--accent);
 }
 
+/* Active edit mode styling */
 .modal__edit-btn--active {
   background: rgba(110, 231, 183, 0.12);
   border-color: rgba(110, 231, 183, 0.4);
   color: var(--accent);
 }
 
+/* ========================================
+   Toolbar (Bulk Actions)
+======================================== */
+
 .modal__toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 10px 20px;
+
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -116,6 +183,7 @@
   gap: 10px;
 }
 
+/* Custom checkbox wrapper */
 .modal__select-all {
   display: flex;
   align-items: center;
@@ -123,6 +191,7 @@
   cursor: pointer;
 }
 
+/* Hide native checkbox visually */
 .modal__select-all input {
   position: absolute;
   opacity: 0;
@@ -130,35 +199,7 @@
   height: 0;
 }
 
-.modal__select-all-box {
-  display: block;
-  width: 18px;
-  height: 18px;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.modal__select-all input:checked + .modal__select-all-box {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.modal__select-all input:checked + .modal__select-all-box::after {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 2px;
-  width: 6px;
-  height: 9px;
-  border: 2px solid #000;
-  border-top: none;
-  border-left: none;
-  transform: rotate(45deg);
-}
-
+/* Label for select all checkbox */
 .modal__select-all-label {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.6);
@@ -167,24 +208,85 @@
   letter-spacing: 0.3px;
 }
 
+/**
+ * Custom checkbox UI.
+ * Styled box replaces native input.
+ */
+.modal__select-all-box {
+  display: block;
+  width: 18px;
+  height: 18px;
+
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.05);
+
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Checked state */
+.modal__select-all input:checked + .modal__select-all-box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Checkmark */
+.modal__select-all input:checked + .modal__select-all-box::after {
+  content: '';
+  position: absolute;
+
+  left: 4px;
+  top: 2px;
+
+  width: 6px;
+  height: 9px;
+
+  border: 2px solid #000;
+  border-top: none;
+  border-left: none;
+
+  transform: rotate(45deg);
+}
+
+/* ========================================
+   Model count display 
+======================================== */
+
+.modal__count {
+  padding: 6px 20px;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.3);
+  font-family: 'JetBrains Mono', monospace;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.076);
+}
+/* ========================================
+   Action Buttons
+======================================== */
+
 .modal__action-btn {
   display: flex;
   align-items: center;
   gap: 5px;
+
   padding: 6px 12px;
   border-radius: 8px;
+
   letter-spacing: 0.5px;
   cursor: pointer;
+
   border: 1px solid transparent;
   transition: all 0.2s ease;
 }
 
+/* Disabled state prevents hover effects */
 .modal__action-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
   pointer-events: none;
 }
 
+/* Duplicate = positive action */
 .modal__action-btn--duplicate {
   background: rgba(110, 231, 183, 0.08);
   border-color: rgba(110, 231, 183, 0.2);
@@ -197,6 +299,7 @@
   box-shadow: 0 0 16px rgba(110, 231, 183, 0.15);
 }
 
+/* Delete = destructive action */
 .modal__action-btn--delete {
   background: rgba(248, 113, 113, 0.08);
   border-color: rgba(248, 113, 113, 0.2);
@@ -209,56 +312,70 @@
   box-shadow: 0 0 16px rgba(248, 113, 113, 0.15);
 }
 
-.modal__count {
-  padding: 6px 20px;
-  font-size: 11px;
-  color: rgba(0, 0, 0, 0.3);
-  font-family: 'JetBrains Mono', monospace;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.076);
-}
+
+/* ========================================
+   Body & States
+======================================== */
 
 .modal__body {
   overflow-y: auto;
   padding: 20px 40px;
+
+  /* Firefox scrollbar */
   scrollbar-width: thin;
+
   display: flex;
   justify-content: center;
 }
 
+/* Placeholder before search */
 .modal__placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 48px 20px;
+
   color: rgba(0, 0, 0, 0.4);
   font-size: 16px;
+
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* Error state styling */
 .modal__error {
   display: flex;
   align-items: center;
   padding: 48px 20px;
   gap: 10px;
+
   background: rgba(248, 113, 113, 0.06);
   border: 1px solid rgba(248, 113, 113, 0.2);
   border-radius: 12px;
+
   color: #f87171;
+
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
+
   animation: fadeIn 0.3s ease both;
 }
 
+/* Empty results */
 .modal__empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   padding: 48px 20px;
+
   color: rgba(0, 0, 0, 0.6);
+
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   text-align: center;
+
   animation: fadeIn 0.3s ease both;
 }
 
@@ -266,12 +383,16 @@
   color: rgba(0, 0, 0, 0.8);
 }
 
+/* Loading spinner */
 .modal__spinner {
   width: 60px;
   height: 60px;
+
   border: 2px solid rgba(16, 185, 129, 0.2);
   border-top-color: #10b981;
+
   border-radius: 50%;
+
   animation: spin 0.7s linear infinite;
 }
 
@@ -279,10 +400,14 @@
   to { transform: rotate(360deg); }
 }
 
+/* Cards grid */
 .modal__cards {
   display: flex;
   flex-wrap: wrap;
-  padding: px 0;
+
+  /* ⚠️ BUG HERE: padding: px 0; is invalid */
+  padding: 0 0;
+
   gap: 20px;
   justify-content: flex-start;
 }
