@@ -2,12 +2,21 @@ import { useState } from 'react'
 import './App.css'
 import { SearchModal } from './components/SearchModal'
 
+/**
+ * Main application component.
+ * Handles the top-level layout, branding, and toggling the GitHub search modal.
+ */
 function App() {
+    /** Tracks whether the search modal is open */
     const [isModalOpen, setIsModalOpen] = useState(false)
+
     return (
         <div className={`app ${isModalOpen ? 'is-searching' : ''}`}>
+            
+            {/* Logo section */}
             <div className="app__logo">
                 <div className="app__logo-image">
+                    {/* GitHub-style SVG logo */}
                     <svg width="80" height="80" viewBox="0 0 20 20" fill="none">
                         <path
                             fillRule="evenodd"
@@ -19,6 +28,8 @@ function App() {
                 </div>
                 <span className="app__logo-text">GitSearch</span>
             </div>
+
+            {/* Button to open GitHub search modal */}
             <button
                 className="app__search-btn"
                 onClick={() => setIsModalOpen(true)}
@@ -38,9 +49,15 @@ function App() {
                         strokeLinecap="round"
                     />
                 </svg>
-        Github search
+                {/* Button label */}
+                Github search
             </button>
-            <SearchModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+            {/* Search modal component */}
+            <SearchModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </div>
     )
 }

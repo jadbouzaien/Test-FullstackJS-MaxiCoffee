@@ -1,10 +1,14 @@
+/* Import Google Fonts for the app */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
+/* Root CSS variables */
 #root {
-  --accent: #6ee7b7;
+  --accent: #6ee7b7; /* primary accent color used throughout the app */
 }
 
+/* Base body styling */
 body {
+  /* Soft radial gradient background for a subtle, friendly look */
   background: radial-gradient(
     circle at center,
     #fff5fa 0%,
@@ -12,16 +16,18 @@ body {
   );
 }
 
+/* Top-level app container */
 .app {
-  min-height: 100dvh;
+  min-height: 100dvh; /* full viewport height for mobile and desktop */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 100px;
+  gap: 100px; /* spacing between logo and search button */
   position: relative;
 }
 
+/* Search button styling */
 .app__search-btn {
   display: flex;
   align-items: center;
@@ -37,9 +43,11 @@ body {
   letter-spacing: 0.3px;
   cursor: pointer;
   width: fit-content;
+  /* Smooth spring-like transition for hover and modal animations */
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Hover effect for search button */
 .app__search-btn:hover {
   background: rgba(110, 231, 183, 0.2);
   border-color: rgba(110, 231, 183, 0.5);
@@ -47,34 +55,39 @@ body {
   transform: translateY(-1px) scale(1.02);
 }
 
+/* When the search modal is open, move the button upward */
 .app.is-searching .app__search-btn {
   transform: translateY(calc(-50vh - 60px));
 }
 
+/* Logo container styling */
 .app__logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  /* Smooth transition for scaling/moving during modal open */
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Hide/scale logo when search modal is active */
 .app.is-searching .app__logo {
   transform: translateY(-120px) scale(0.6);
   opacity: 0;
-  pointer-events: none;
+  pointer-events: none; /* disable interaction while hidden */
 }
 
+/* Logo SVG container */
 .app__logo-image {
-  color: var(--accent);
+  color: var(--accent); /* ensure logo uses accent color */
   display: flex;
   align-items: center;
 }
 
+/* Logo text */
 .app__logo-text {
   font-size: 16px;
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: var(--text);
+  color: var(--text); /* fallback text color variable */
   font-family: 'Syne', sans-serif;
 }
-
