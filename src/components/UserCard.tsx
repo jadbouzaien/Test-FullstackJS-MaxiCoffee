@@ -24,7 +24,7 @@ export const UserCard = ({user} : UserCardProps) => {
                 className="user-card__btn"
             >
                 VIEW PROFILE
-                </a>
+            </a>
         </div>
     );
 };
